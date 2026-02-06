@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Be My Valentine ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: "Segoe UI", sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            color: #b30047;
+            font-size: 2.2rem;
+        }
+
+        p {
+            color: #660029;
+            font-size: 1.2rem;
+        }
+
+        .buttons {
+            position: relative;
+            width: 320px;
+            height: 180px;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 14px 28px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
+            left: 40px;
+            top: 70px;
+        }
+
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+            left: 180px;
+            top: 70px;
+        }
+
+        #result {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        img {
+            max-width: 260px;
+            margin-top: 15px;
+        }
+
+        .final-message {
+            margin-top: 15px;
+            font-size: 1.4rem;
+            color: #b30047;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            font-size: 20px;
+            animation: floatUp 5s linear infinite;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // 👉 CHANGE HER NAME HERE
+    const herName = "Mon Cherie.❤️";
+</script>
+
+<h1 id="question"></h1>
+<p>Every moment with you means everything to me 💖</p>
+
+<div class="buttons">
+    <button id="yesBtn">Yes 💘</button>
+    <button id="noBtn">No 🙈</button>
+</div>
+
+<div id="result">
+    <h1>Yayyyy!!! 🌹💐</h1>
+    <p>These flowers are for you, <span id="nameHere"></span> ❤️</p>
+    <img src="IMG_4340.jpeg" alt="Flowers" height="300">
+    <div class="final-message">Dinner is on me. 😘🌚</div>
+</div>
+
+<script>
+    document.getElementById("question").innerText =
+        `Will you be my Valentine? 💕`;
+
+    document.getElementById("nameHere").innerText = herName;
+
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const result = document.getElementById("result");
+    const buttons = document.querySelector(".buttons");
+
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * 220;
+        const y = Math.random() * 120;
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+        buttons.style.display = "none";
+        result.style.display = "block";
+        startHearts();
+    });
+
+    function startHearts() {
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerText = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }, 300);
+    }
+</script>
+
+</body>
+</html>
